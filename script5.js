@@ -14,3 +14,10 @@ function testInput() {
 }
 
 btn.onclick = testInput;
+
+input.onkeydown = function(e) {
+	if(e.code == 'Enter') {
+        console.log('aa');
+        testInput;
+    }
+}
