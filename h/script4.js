@@ -6,7 +6,7 @@ pass = 1967;
 
 function testInput() {
     if (input.value == pass) {
-        div.innerHTML = "<h3>Parabéns! Você acertou!</h3><a class='btn2' href='https://www.enigmaximo.com.br/h/dccer7a8cwh56.html'>Continue aqui</a>";
+        div.innerHTML = "<h3>Parabéns! Você acertou!</h3><a class='btn2' href='https://www.enigmaximo.com.br/h/qr2ccer7a8cwh56.html'>Continue aqui</a>";
     } else {
         window.alert("Resposta errada. Tente de novo!");
     }
