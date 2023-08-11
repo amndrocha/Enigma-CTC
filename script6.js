@@ -6,7 +6,7 @@ pass = 'hans';
 
 function testInput() {
     if (input.value.toLowerCase() == pass) {
-        div.innerHTML = "<h3>Parabéns! Você acertou!</h3><a class='btn2' href='https://www.enigmaximo.com.br/h/qr4hyzdf78d4eds.html'>Continue aqui</a>";
+        div.innerHTML = "<h3>Parabéns! Você acertou!</h3><a class='btn2' href='https://www.enigmaximo.com.br/qr4hyzdf78d4eds.html'>Continue aqui</a>";
     } else {
         window.alert("Resposta errada. Tente de novo!");
     }
