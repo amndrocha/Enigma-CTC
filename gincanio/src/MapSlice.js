@@ -5,23 +5,69 @@ export const mapSlice = createSlice({
         initialState: {
             modalClass: "none",
             found: false,
+            dark: false,
             pass: "",
             input: "",
             countries: [
                 {
                     name: 'brasil',
                     pass: 'brasil',
-                    class: "unselected-point",
-                },                
+                    position: [ -2.7562580015438476 , -48.17132509212502 ],
+                    marker: "unselected-point",
+                },
                 {
                     name: 'argentina',
                     pass: 'argentina',
-                    class: "unselected-point",
-                },                
+                    position: [ -40.77563875754914 , -69.2750762182338 ],
+                    marker: "unselected-point",
+                },
+                {
+                    name: 'eua',
+                    pass: 'eua',
+                    position: [ 33.71432359567805 , -86.95083968378019 ],
+                    marker: "unselected-point",
+                },
                 {
                     name: 'polonia',
                     pass: 'polonia',
-                    class: "unselected-point",
+                    position: [ 51.57581250779703 , 20.601412987576932 ],
+                    marker: "unselected-point",
+                },
+                {
+                    name: 'turquia',
+                    pass: 'turquia',
+                    position: [ 39.87468079676904 , 35.40007298068552 ],
+                    marker: "unselected-point",
+                },
+                {
+                    name: 'mocambique',
+                    pass: 'mocambique',
+                    position: [ -14.711146744526507 , 37.5196353271052 ],
+                    marker: "unselected-point",
+                },
+                {
+                    name: 'arabia',
+                    pass: 'arabia',
+                    position: [ 25.73921961430858 , 42.000545531346155 ],
+                    marker: "unselected-point",
+                },
+                {
+                    name: 'india',
+                    pass: 'india',
+                    position: [ 21.16301794100615 , 79.60419371933031 ],
+                    marker: "unselected-point",
+                },
+                {
+                    name: 'indonesia',
+                    pass: 'indonesia',
+                    position: [ -0.396793751120472 , 101.92963933255506 ],
+                    marker: "unselected-point",
+                },
+                {
+                    name: 'turcomenistao',
+                    pass: 'turcomenistao',
+                    position: [ 39.4008965162013 , 58.422772177048984 ],
+                    marker: "unselected-point",
                 },
             ]
         },
@@ -42,12 +88,10 @@ export const mapSlice = createSlice({
             checkPass: (state, action) => {
                 let pass = state.pass;
                 let input = state.input;
-                console.log("pass: ",pass);
-                console.log("input: ",input);
                 if (pass == input) {
                     state.countries.map((country) => {
-                        if (country.name == pass) {
-                            country.class = "selected-point";
+                        if (country.pass == pass) {
+                            country.marker = state.dark ? "dark-selected-point" : "selected-point";
                         }
                     })
                 }
@@ -55,11 +99,33 @@ export const mapSlice = createSlice({
             },
             handleFound (state) {
                 state.found = true;
+            },
+            handleDark (state) {
+                state.dark = !state.dark;
+                console.log(state.dark);
+                state.countries.map((country) => {
+                    if (country.marker == "unselected-point") {
+                        country.marker = "dark-unselected-point";
+                        return;
+                    }
+                    if (country.marker == "selected-point") {
+                        country.marker = "dark-selected-point";
+                        return;
+                    }
+                    if (country.marker == "dark-selected-point") {
+                        country.marker = "selected-point";
+                        return;
+                    }
+                    if (country.marker == "dark-unselected-point") {
+                        country.marker = "unselected-point";
+                        return;
+                    }
+                })
             }
         }
 
     }
 );
 
-export const { handleModal, setInput, checkPass, handleFound } =  mapSlice.actions;
+export const { handleModal, setInput, checkPass, handleFound, handleDark } =  mapSlice.actions;
 export default mapSlice.reducer

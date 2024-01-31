@@ -1,17 +1,21 @@
 import { NavLink, Outlet, RouterProvider, createBrowserRouter, useNavigate, useParams } from "react-router-dom";
+import { useDispatch, useSelector } from "react-redux";
 import { Page } from "./Page";
 import { Instrucoes } from "./Instrucoes";
-import { Dark } from "./Dark";
+import { handleDark } from "./MapSlice";
+
 
 
 function  App() {
+    const dispatch = useDispatch();
+    let dark = useSelector((state) => state.map.dark);
     
     const Navbar = () =>{
         return(
             <div className="navbar">
                 <NavLink className={ ( {isActive} ) => isActive ? "navbar_item-clicked" : "navbar_item"} to='/'> Mapa</NavLink>
                 <NavLink className={ ( {isActive} ) => isActive ? "navbar_item-clicked" : "navbar_item"} to='/instrucoes'> Instruções</NavLink>
-                <NavLink className={ ( {isActive} ) => isActive ? "navbar_item-clicked" : "navbar_item"} to='/dark'> Dark mode</NavLink>
+                <NavLink className={ dark ? "navbar_item-clicked" : "navbar_item"} onClick={() => dispatch(handleDark())}> Dark mode</NavLink>
             </div>
         )
     }
@@ -34,7 +38,6 @@ function  App() {
             children: [
                 {path: '/',element:<Page/>},
                 {path: '/instrucoes',element:<Instrucoes/>},
-                {path: '/dark',element:<Dark/>},
             ]
            }
     ])
