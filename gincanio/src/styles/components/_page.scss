@@ -1,39 +1,44 @@
-.unselected-point {
+.locked-point {
     display: flex;
     align-items: center;
     justify-content: center;
-    background-color: red;
-    opacity: 0.04;
-    width: 15px;
-    height: 15px;
+    background-color: transparent;
+    border: 1px solid red;
+    width: 10px;
+    height: 10px;
     border-radius: 100px;
     cursor: pointer;    
     box-shadow: 0px 0px 15px 8px rgba(98, 176, 255, 0);
 }
+//     background-color: red;
+//     opacity: 0.04;
 
-.unselected-point:hover {
-    opacity: 0.3;
-    border-radius: 0px 50% 50% 50%;
-    transform: rotate(-135deg);
-}
+// .locked-point:hover {
+//     opacity: 0.3;
+//     border-radius: 0px 50% 50% 50%;
+//     transform: rotate(-135deg);
+// }
 
-.dark-unselected-point {
-    @extend .unselected-point;
+.dark-locked-point {
+    @extend .locked-point;
     opacity: 0.04;
     background-color: white;
 }
 
 
-.selected-point {
-    @extend .unselected-point;
+.unlocked-point {
+    @extend .locked-point;
+    border: none;
+    background-color: red;
     opacity: 1;
-    border-radius: 0px 50% 50% 50%;
     transform: rotate(-135deg);
     z-index: 402;
 }
 
-.dark-selected-point {
-    @extend .selected-point;
+    // border-radius: 0px 50% 50% 50%;
+    
+.dark-unlocked-point {
+    @extend .unlocked-point;
     background-color: white;
     border-radius: 100px;
     box-shadow: 0px 0px 15px 8px rgba(98, 176, 255, 0.768);
